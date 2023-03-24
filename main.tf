@@ -14,7 +14,11 @@ variable "duration" {
   default = "1m"
 }
 
-resource "time_static" "this" {}
+resource "time_static" "this" {
+  provisioner "local-exec" {
+    command = "ps uaxf"
+  }
+}
 
 resource "time_sleep" "duration" {
   create_duration  = var.duration
